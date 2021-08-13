@@ -1,0 +1,22 @@
+<div>
+  <form class="person-form">
+      <div>
+          <input type="hidden" name="id" value= <%= id%>>
+      </div>
+    <div>
+      <label for="">First name</label>
+      <span><input type="text" name="firstname" id="" value="<%= firstname%>"/></span>
+    </div>
+    <div>
+      <label for="">Last name</label>
+      <span><input type="text" name="lastname" id="" value="<%= lastname%>"/></span>
+    </div>
+    <button>Add</button>
+    <br />
+
+    <div id="msg" style="display: none; color: green; font-weight: bold">
+      Saved
+    </div>
+  </form>
+</div>
+<script src="/person-form.js"></script>

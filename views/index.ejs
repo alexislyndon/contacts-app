@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacts App</title>
+    <script src="/jquery.js"></script>
+    <script src="/app.js"></script>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% people.map(i =>{ %>
+        <tr data-person-id="<%= i.id%>">
+          <td><%= i.id %></td>
+          <td><%= i.firstname %></td>
+          <td><%= i.lastname %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <form class="new-person-form">
+      <div>
+        <label for="">First name</label>
+        <span><input type="text" name="firstname" id="" /></span>
+      </div>
+      <div>
+        <label for="">Last name</label>
+        <span><input type="text" name="lastname" id="" /></span>
+      </div>
+      <button>Add</button>
+      <br />
+
+      <div id="msg" style="display: none; color: green; font-weight: bold">
+        Saved
+      </div>
+    </form>
+    <div id="content" style="float: right;"></div>
+  </body>
+</html>
