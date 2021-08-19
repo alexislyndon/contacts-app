@@ -1,7 +1,7 @@
 <div>
   <form class="person-form">
       <div>
-          <input type="hidden" name="id" value= <%= id%>>
+          <input type="hidden" name="id" value= <%= id%> >
       </div>
     <div>
       <label for="">First name</label>
@@ -11,13 +11,30 @@
       <label for="">Last name</label>
       <span><input type="text" name="lastname" id="" value="<%= lastname%>"/></span>
     </div>
-    <button type="submit">Save</button>
-    <button type="reset">Delete</button>
     <br />
-
+    
     <div id="msg" style="display: none; color: green; font-weight: bold">
       Saved
     </div>
+    
+    <table>
+      <thead>
+        <th><a href="javascript:" id="add-ea-btn">Add</a></th>
+        <th>Email Address</th>
+      </thead>
+      <tbody>
+        <%  emailaddresses?.map(i => { %>
+          <tr>
+            <td><a href="javascript:" class="remove-ea-btn">Remove</a></td>
+            <td>
+              <input type="text" name="emailaddresses" value="<%= i %>" >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <button type="submit">Save</button>
+      
   </form>
 </div>
-<script src="/person-form.js"></script>
+<script src="/apps.js"></script>

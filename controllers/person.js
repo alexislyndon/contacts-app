@@ -1,4 +1,4 @@
-const db = require("../config/db");
+const db = require("../services/dbService/db");
 
 exports.create = async (req, res) => {
   const { firstname, lastname } = req.body;
