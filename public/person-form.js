@@ -1,27 +1,36 @@
 $(function () {
   var form = $(".person-form");
   form.on("submit", function (e) {
+
     e.preventDefault();
 
     var form = $(this);
     var formData = form.serializeToJSON({ associativeArrays: false });
 
+    formData.emailaddresses = form.find('input[name="emailaddresses"]').map(function() {
+
+      return $(this).val()
+    })
+    .get()
+
     $.ajax({
       type: "POST",
       url: "/person",
       data: formData,
-      success: function () {
+      success: function (response) {
         //form.find("#msg").show().delay(3000).fadeOut();
         var { p_id } = response;
         var firstname = form.find('input[name="firstname"]').val();
         var lastname = form.find('input[name="lastname"]').val();
         var id = $("tbody tr:last td:first").text();
+        
         console.log(id);
 
         var html = `<tr data-person-id=${p_id}><td>${firstname}</td> <td>${lastname}<td></tr>`;
 
-        $("table tbody").append(html);
-        $("#msg").show().delay(3000).fadeOut();
+        $(".people-tbl table tbody").append(html);
+
+        form.find("#msg").show().delay(3000).fadeOut();
       },
     });
   });
@@ -36,17 +45,25 @@ $(function () {
   });
 
   form.find("#add-ea-btn").on("click", function () {
+
     var tbody = $(this).closest("table").find("tbody");
-    var tr = `
+    var tr = $(`
     <tr>
             <td><a href="javascript:" class="remove-ea-btn">Remove</a></td>
             <td>
               <input type="text" name="emailaddresses" value="" >
             </td>
           </tr>
-    `;
+    `);
 
     tbody.append(tr);
+
+    var a = tr.find('.remove-ea-btn')
+
+    a.on('click', function() {
+      
+      removeTr(a)
+    })
   });
 
   form.find("#add-pa-btn").on("click", function () {

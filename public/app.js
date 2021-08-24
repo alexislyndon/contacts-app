@@ -1,3 +1,15 @@
+$.ajaxSetup({
+
+  beforeSend: function() {
+
+      $('#loader').show()
+  },
+  complete: function() {
+
+      $('#loader').fadeOut()
+  }
+})
+
 //on form submit
 $(function () {
   $("#new").on("submit", function (e) {

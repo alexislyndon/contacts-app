@@ -13,10 +13,6 @@
     </div>
     <br />
     
-    <div id="msg" style="display: none; color: green; font-weight: bold">
-      Saved
-    </div>
-    
     <table>
       <thead>
         <th><a href="javascript:" id="add-ea-btn">Add</a></th>
@@ -49,6 +45,7 @@
             <tr>
               <td><a href="javascript:" class="remove-pa-btn">Remove</a></td>
               <td>
+                <input type='hidden' name='postaladdresses[<%= idx %>].pa_id' value='<%= i.pa_id %>'>
                 <input type="text" name="postaladdresses[<%= idx %>].street" id="" value="<%= i.street %>">
               </td>
               <td>
@@ -63,7 +60,9 @@
         </tbody>
       </table>
       <button type="submit">Save</button>
-      
+      <div id="msg" style="display: none; color: green; font-weight: bold">
+        Saved
+      </div>
   </form>
 </div>
 <script src="/person-form.js"></script>
