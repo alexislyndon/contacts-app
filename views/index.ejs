@@ -7,12 +7,15 @@
     <title>Contacts App</title>
     <script src="/jquery.js"></script>
     <script src="/app.js"></script>
+    <script src="/jquery.serializeTojson.js"></script>
+
   </head>
   <body>
-    <table>
+    <div id='loader' style='display: none;'>Loading...</div>
+    <div id="content" style="float: right;"></div>
+    <table class="people-tbl">
       <thead>
         <tr>
-          <th>id</th>
           <th>Firstname</th>
           <th>Lastname</th>
         </tr>
@@ -20,29 +23,12 @@
       <tbody>
         <% people.map(i =>{ %>
         <tr data-person-id="<%= i.id%>">
-          <td><%= i.id %></td>
           <td><%= i.firstname %></td>
           <td><%= i.lastname %></td>
         </tr>
         <% }) %>
       </tbody>
     </table>
-    <form class="new-person-form">
-      <div>
-        <label for="">First name</label>
-        <span><input type="text" name="firstname" id="" /></span>
-      </div>
-      <div>
-        <label for="">Last name</label>
-        <span><input type="text" name="lastname" id="" /></span>
-      </div>
-      <button>Add</button>
-      <br />
-
-      <div id="msg" style="display: none; color: green; font-weight: bold">
-        Saved
-      </div>
-    </form>
-    <div id="content" style="float: right;"></div>
+    <a href="javascript:" class="new-contact-btn" >Add new Contact</a>
   </body>
 </html>

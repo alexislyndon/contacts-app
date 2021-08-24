@@ -1,7 +1,7 @@
 <div>
   <form class="person-form">
       <div>
-          <input type="hidden" name="id" value= <%= id%>>
+          <input type="hidden" name="id" value= <%= id%> >
       </div>
     <div>
       <label for="">First name</label>
@@ -11,12 +11,58 @@
       <label for="">Last name</label>
       <span><input type="text" name="lastname" id="" value="<%= lastname%>"/></span>
     </div>
-    <button>Add</button>
     <br />
+    
+    <table>
+      <thead>
+        <th><a href="javascript:" id="add-ea-btn">Add</a></th>
+        <th>Email Address</th>
+      </thead>
+      <tbody>
+        <% if(emailaddresses) { emailaddresses.map((i,idx) => { %>
+          <tr>
+            <td><a href="javascript:" class="remove-ea-btn">Remove</a></td>
+            <td>
+              <input type="text" name="emailaddresses" value="<%= i %>" >
+            </td>
+          </tr>
+          <% }) } %>
+        </tbody>
+      </table>
 
-    <div id="msg" style="display: none; color: green; font-weight: bold">
-      Saved
-    </div>
+      <h2>Addresses</h2>
+      <table>
+        <thead>
+          <tr>
+            <th><a href="javascript:" id="add-pa-btn">Add</a></th>
+            <th>Stree</th>
+            <th>City</th>
+            <th>Zip Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(postaladdresses) { postaladdresses.map((i,idx) => { %>
+            <tr>
+              <td><a href="javascript:" class="remove-pa-btn">Remove</a></td>
+              <td>
+                <input type='hidden' name='postaladdresses[<%= idx %>].pa_id' value='<%= i.pa_id %>'>
+                <input type="text" name="postaladdresses[<%= idx %>].street" id="" value="<%= i.street %>">
+              </td>
+              <td>
+                <input type="text" name="postaladdresses[<%= idx %>].city" id="" value="<%= i.city %>">
+              </td>
+              <td>
+                <input type="text" name="postaladdresses[<%= idx %>].zipcode" id="" value="<%= i.zipcode %>">
+
+              </td>
+            </tr>
+            <% }) } %>
+        </tbody>
+      </table>
+      <button type="submit">Save</button>
+      <div id="msg" style="display: none; color: green; font-weight: bold">
+        Saved
+      </div>
   </form>
 </div>
 <script src="/person-form.js"></script>
