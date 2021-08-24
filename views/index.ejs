@@ -7,6 +7,8 @@
     <title>Contacts App</title>
     <script src="/jquery.js"></script>
     <script src="/app.js"></script>
+    <script src="/jquery.serializeTojson.js"></script>
+
   </head>
   <body>
     <div id="content" style="float: right;"></div>
@@ -26,21 +28,6 @@
         <% }) %>
       </tbody>
     </table>
-    <form class="new-person-form" id="new">
-      <div>
-        <label for="">First name</label>
-        <span><input type="text" name="firstname" id="" /></span>
-      </div>
-      <div>
-        <label for="">Last name</label>
-        <span><input type="text" name="lastname" id="" /></span>
-      </div>
-      <button>Add</button>
-      <br />
-
-      <div id="msg" style="display: none; color: green; font-weight: bold">
-        Saved
-      </div>
-    </form>
+    <a href="javascript:" class="new-contact-btn" >Add new Contact</a>
   </body>
 </html>

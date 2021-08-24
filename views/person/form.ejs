@@ -23,18 +23,47 @@
         <th>Email Address</th>
       </thead>
       <tbody>
-        <%  emailaddresses?.map(i => { %>
+        <% if(emailaddresses) { emailaddresses.map((i,idx) => { %>
           <tr>
             <td><a href="javascript:" class="remove-ea-btn">Remove</a></td>
             <td>
               <input type="text" name="emailaddresses" value="<%= i %>" >
             </td>
           </tr>
-          <% }) %>
+          <% }) } %>
+        </tbody>
+      </table>
+
+      <h2>Addresses</h2>
+      <table>
+        <thead>
+          <tr>
+            <th><a href="javascript:" id="add-pa-btn">Add</a></th>
+            <th>Stree</th>
+            <th>City</th>
+            <th>Zip Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(postaladdresses) { postaladdresses.map((i,idx) => { %>
+            <tr>
+              <td><a href="javascript:" class="remove-pa-btn">Remove</a></td>
+              <td>
+                <input type="text" name="postaladdresses[<%= idx %>].street" id="" value="<%= i.street %>">
+              </td>
+              <td>
+                <input type="text" name="postaladdresses[<%= idx %>].city" id="" value="<%= i.city %>">
+              </td>
+              <td>
+                <input type="text" name="postaladdresses[<%= idx %>].zipcode" id="" value="<%= i.zipcode %>">
+
+              </td>
+            </tr>
+            <% }) } %>
         </tbody>
       </table>
       <button type="submit">Save</button>
       
   </form>
 </div>
-<script src="/apps.js"></script>
+<script src="/person-form.js"></script>

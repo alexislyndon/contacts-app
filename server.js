@@ -5,15 +5,12 @@ const app = express();
 //require("./services/routeService")(app);
 
 //routes
-app;
-
-app;
 
 //app;
 
 //routes
 //app.use("/", require("./routes/person"));
-
+app.use(express.json());
 app
 
   .use(express.static("public"))

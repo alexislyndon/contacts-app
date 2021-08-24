@@ -3,7 +3,7 @@ $(function () {
   $("#new").on("submit", function (e) {
     e.preventDefault();
     var form = $(this);
-    var formData = form.serialize();
+    var formData = form.serializeToJSON({ associativeArrays: false });
     console.log("ok");
 
     $.ajax({
@@ -38,27 +38,37 @@ $(function () {
     });
   });
 
-  var form = $(".person-form");
-  form.on("submit", function (e) {
-    e.preventDefault();
-
-    var form = $(this);
-    var formData = form.serialize();
-
+  $(".new-contact-btn").on("click", function () {
     $.ajax({
-      type: "POST",
-      url: "/person",
-      data: formData,
-      success: function () {
-        form.find("#msg").show().delay(3000).fadeOut();
+      url: "person/new",
+      success: function (res) {
+        $("#content").html(res);
       },
     });
   });
 
-  form.find("table tbody .remove-ea-btn").on("click", function () {
-    var a = $(this);
-    a.closest('tr').remove()
-  });
+  //person form handlers
+  // var form = $(".person-form");
+  // form.on("submit", function (e) {
+  //   e.preventDefault();
+
+  //   var form = $(this);
+  //   var formData = form.serialize();
+
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/person",
+  //     data: formData,
+  //     success: function () {
+  //       form.find("#msg").show().delay(3000).fadeOut();
+  //     },
+  //   });
+  // });
+  // //remove
+  // form.find("table tbody .remove-ea-btn").on("click", function () {
+  //   var a = $(this);
+  //   a.closest("tr").remove();
+  // });
 
   //
 });
