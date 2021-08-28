@@ -1,42 +1,46 @@
-const path = require("path");
-const fs = require("fs");
+const path = require('path')
+const fs = require('fs')
 
-const sourceDir = "../routes";
+const sourceDir = './routes'
 
 module.exports = server => {
-  function recurseIntoDir(dir) {
-    const x = "." + sourceDir;
 
-    fs.readdirSync(dir).forEach((item) => {
-      const p = path.join(dir, item);
+    function recurseIntoDir(dir) {
 
-      if (fs.lstatSync(p).isDirectory()) {
-        return recurseIntoDir(p);
-      }
+        const x = '.' + sourceDir
 
-      if (path.extname(p) === false) {
-        return;
-      }
+        fs.readdirSync(dir).forEach(item => {
 
-      const fileName = "../../" + p.replace(/\\/g, "/");
+            const p = path.join(dir, item);
 
-      let route = fileName.substring(x.length + 3);
+            if (fs.lstatSync(p).isDirectory()) {
 
-      route = route.substring(0, route.length - 3);
+                return recurseIntoDir(p);
+            }
 
-      if (route.includes("/z_")) {
-        route = route.replace(/\/z_/, "/");
-      }
+            if (path.extname(p) !== '.js' || path.extname(p) === false) { return; }
 
-      if (route.endsWith("/index")) {
-        route = route.substring(0, route.length - 6);
-      }
+            const fileName = '../' + p.replace(/\\/g, '/');
 
-      console.log(`route: ${fileName} => ${route || "/"}`);
+            let route = fileName.substring(x.length);
 
-      server.use(route, require(fileName));
-    });
-  }
+            route = route.substring(0, route.length - 3);
 
-  recurseIntoDir(sourceDir);
-};
+            if (route.includes('/z_')) {
+
+                route = route.replace(/\/z_/g, '/')
+            }
+
+            if (route.endsWith('/index')) {
+
+                route = route.substring(0, route.length - 6) || '/';
+            }
+
+            console.log(`${fileName} => ${route}`);
+
+            server.use(route, require(fileName));
+        });
+    }
+
+    recurseIntoDir(sourceDir)
+}

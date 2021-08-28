@@ -17,10 +17,12 @@ app
 
   .use(express.urlencoded({ urlencoded: true }))
 
-  .use("/", require("./routes/index"))
+  // .use("/", require("./routes/index"))
 
-  .use("/person", require("./routes/person/index"))
+  // .use("/person", require("./routes/person/index"))
 
   .set("view engine", "ejs")
 
   .listen(5001, () => console.log(`Server Running`));
+
+require('./services/routeService')(app)
